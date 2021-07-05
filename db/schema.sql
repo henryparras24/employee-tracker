@@ -7,7 +7,7 @@ USE employeeTracker_DB;
 -- creates departments table with these columns
 CREATE TABLE departments (
     id INT(10) NOT NULL AUTO_INCREMENT, 
-    name VARCHAR(30) NOT NULL,
+    names VARCHAR(30) NOT NULL,
     PRIMARY KEY (id)
 );
 
