@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 
 
-function employeeTracker(){
+function employeeChoices(){
 
     inquirer.prompt ([
       {
@@ -44,4 +44,35 @@ function employeeTracker(){
     });
 }
 
-employeeTracker();
+async function viewEmployees () {
+// displaying all employees
+ const employees = await employeeTracker.getAllEmployees()  
+ console.table(employees) 
+
+ employeeChoices();
+
+}
+
+async function allEmployeesByDept () {
+
+    const allDepartments = await employeeTracker.getAllDepartments()
+
+    const departmentDetails = allDepartments.map(({id, name}) => ({
+        name: name,
+        value: id
+
+    }))
+
+    const departmentId = await inquirer.prompt ([
+        {
+          type: 'list',
+                name: 'choice',
+                message: 'Which department do you want to search employees for?',
+                choices: departmentDetails
+        },
+      ])
+// get all employees and show all employees
+}
+
+
+employeeChoices();
