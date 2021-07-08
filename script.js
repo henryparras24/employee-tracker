@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-
+const connection = require("./db")
 
 function employeeChoices(){
 
@@ -15,7 +15,8 @@ function employeeChoices(){
     .then((answers) => {
       switch(answers.choice) {
         case "add department":
-          addDepartment();
+        //   addDepartment();
+        console.log(connection);
           break;
         case "add role":
           addRole();
@@ -46,33 +47,40 @@ function employeeChoices(){
 
 async function viewEmployees () {
 // displaying all employees
- const employees = await employeeTracker.getAllEmployees()  
- console.table(employees) 
+//  const employees = await connection.getAllEmployees()  
+//  console.table(employees) 
+try {
+    const employees = await connection.getAllEmployees();
+    console.table(employees);
+  } catch(err) {
+    console.log(err); // TypeError: failed to fetch
+  }
+
 
  employeeChoices();
 
 }
 
-async function allEmployeesByDept () {
+// async function allEmployeesByDept () {
 
-    const allDepartments = await employeeTracker.getAllDepartments()
+//     const allDepartments = await employeeTracker.getAllDepartments()
 
-    const departmentDetails = allDepartments.map(({id, name}) => ({
-        name: name,
-        value: id
+//     const departmentDetails = allDepartments.map(({id, name}) => ({
+//         name: name,
+//         value: id
 
-    }))
+//     }))
 
-    const departmentId = await inquirer.prompt ([
-        {
-          type: 'list',
-                name: 'choice',
-                message: 'Which department do you want to search employees for?',
-                choices: departmentDetails
-        },
-      ])
+//     const departmentId = await inquirer.prompt ([
+//         {
+//           type: 'list',
+//                 name: 'choice',
+//                 message: 'Which department do you want to search employees for?',
+//                 choices: departmentDetails
+//         },
+//       ])
 // get all employees and show all employees
-}
+// }
 
 
 employeeChoices();
