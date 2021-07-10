@@ -61,6 +61,40 @@ try {
 
 }
 
+
+async function viewDepartments () {
+    // displaying all employees
+    //  const employees = await connection.getAllEmployees()  
+    //  console.table(employees) 
+    try {
+        const departments = await connection.getAllDepartments();
+        console.table(departments);
+      } catch(err) {
+        console.log(err); // TypeError: failed to fetch
+      }
+    
+    
+     employeeChoices();
+    
+    }
+
+
+    async function viewRoles () {
+        // displaying all employees
+        //  const employees = await connection.getAllEmployees()  
+        //  console.table(employees) 
+        try {
+            const roles = await connection.getAllRoles();
+            console.table(roles);
+          } catch(err) {
+            console.log(err); // TypeError: failed to fetch
+          }
+        
+        
+         employeeChoices();
+        
+        }
+
 // async function allEmployeesByDept () {
 
 //     const allDepartments = await employeeTracker.getAllDepartments()

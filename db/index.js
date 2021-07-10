@@ -5,9 +5,13 @@ class DB {
       }
       getAllEmployees() {
         return this.connection.query("SELECT * FROM employees");
-
       }
-
+        getAllDepartments() {
+            return this.connection.query("SELECT * FROM departments");
+      }
+      getAllRoles() {
+        return this.connection.query("SELECT * FROM roles");
+      }
 
 }
 
