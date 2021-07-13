@@ -1,6 +1,10 @@
 const inquirer = require('inquirer');
 const connection = require("./db")
 
+
+
+
+
 function employeeChoices(){
 
     inquirer.prompt ([
@@ -15,8 +19,7 @@ function employeeChoices(){
     .then((answers) => {
       switch(answers.choice) {
         case "add department":
-        //   addDepartment();
-        console.log(connection);
+           addDepartment();
           break;
         case "add role":
           addRole();
@@ -94,6 +97,30 @@ async function viewDepartments () {
          employeeChoices();
         
         }
+
+    async function addDepartment () {
+            
+        try {
+            const newDepartments = await inquirer.prompt([{
+            name: 'names',
+            type: 'input',
+            message: 'Please enter new department name',
+      }])
+            //answer.newDepartment
+
+            const addedDepartment = await connection.addDepNow(newDepartments);
+            console.log(addedDepartment);
+            
+        } catch(err) {
+          console.log(err);
+        }
+        
+        employeeChoices(); 
+                
+        }
+                
+            
+        
 
 // async function allEmployeesByDept () {
 
