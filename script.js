@@ -106,7 +106,7 @@ async function viewDepartments () {
             type: 'input',
             message: 'Please enter new department name',
       }])
-            //answer.newDepartment
+            
 
             const addedDepartment = await connection.addDepNow(newDepartments);
             console.log(addedDepartment);
@@ -119,29 +119,71 @@ async function viewDepartments () {
                 
         }
                 
+        async function addRole () {
             
+            try {
+                const newRole = await inquirer.prompt([{
+                name: 'title',
+                type: 'input',
+                message: 'Please enter new role title!',
+                },
+                {
+                name: 'salary',
+                type: 'input',
+                message: 'Please enter new role salary!',
+                },
+                {
+                name: 'department_id',
+                type: 'input',
+                message: 'Please enter new role department id!',
+          }])
+                
+    
+                const addedRole = await connection.addRoleNow(newRole);
+                console.log(addedRole);
+                
+            } catch(err) {
+              console.log(err);
+            }
+            
+            employeeChoices(); 
+                    
+            }      
+
+            async function addEmployee () {
+            
+                try {
+                    const newEmployee = await inquirer.prompt([{
+                    name: 'first_name',
+                    type: 'input',
+                    message: 'Please enter first name!',
+                    },
+                    {
+                    name: 'last_name',
+                    type: 'input',
+                    message: 'Please enter last name!',
+                    },
+                    {
+                    name: 'role_id',
+                    type: 'input',
+                    message: 'Please enter role id!',
+                    },
+                    {
+                    name: 'manager_id',
+                    type: 'input',
+                    message: 'Please enter manager id!',
+              }])
+                    
         
-
-// async function allEmployeesByDept () {
-
-//     const allDepartments = await employeeTracker.getAllDepartments()
-
-//     const departmentDetails = allDepartments.map(({id, name}) => ({
-//         name: name,
-//         value: id
-
-//     }))
-
-//     const departmentId = await inquirer.prompt ([
-//         {
-//           type: 'list',
-//                 name: 'choice',
-//                 message: 'Which department do you want to search employees for?',
-//                 choices: departmentDetails
-//         },
-//       ])
-// get all employees and show all employees
-// }
-
+                    const addedEmployee = await connection.addEmployeeNow(newEmployee);
+                    console.log(addedEmployee);
+                    
+                } catch(err) {
+                  console.log(err);
+                }
+                
+                employeeChoices(); 
+                        
+                }      
 
 employeeChoices();

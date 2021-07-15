@@ -6,7 +6,7 @@ class DB {
       getAllEmployees() {
         return this.connection.query("SELECT * FROM employees");
       }
-        getAllDepartments() {
+      getAllDepartments() {
         return this.connection.query("SELECT * FROM departments");
       }
       getAllRoles() {
@@ -14,7 +14,13 @@ class DB {
       }
       addDepNow(department) {
         return this.connection.query("INSERT INTO departments SET ?", department);
-    }
+      }
+      addRoleNow(role) {
+        return this.connection.query("INSERT INTO roles SET ?", role);
+      }
+      addEmployeeNow(employee) {
+        return this.connection.query("INSERT INTO employees SET ?", employee);
+      }
 }
 
 module.exports = new DB(connection);
