@@ -1,10 +1,10 @@
 const inquirer = require('inquirer');
-const connection = require("./db")
+const connection = require("./db");
+const consoletable = require('console.table');
 
 
 
-
-
+// presents user with choices to start employee tracker
 function employeeChoices(){
 
     inquirer.prompt ([
@@ -12,10 +12,10 @@ function employeeChoices(){
         type: 'list',
               name: 'choice',
               message: 'Welcome to Employee Tracker, where would you like to start?',
-              choices: ["add department", "add role", "add employee", "view departments", "view roles", "view employees", "update employee roles", "exit"]
+              choices: ["add department", "add role", "add employee", "view departments", "view roles", "view employees", "exit"]
       },
     ])
-  
+ // like an if else statement, switch case reads if the user picked this choice then run this code
     .then((answers) => {
       switch(answers.choice) {
         case "add department":
@@ -47,57 +47,49 @@ function employeeChoices(){
       
     });
 }
-
+// function for viewing employees 
 async function viewEmployees () {
-// displaying all employees
-//  const employees = await connection.getAllEmployees()  
-//  console.table(employees) 
+ 
 try {
     const employees = await connection.getAllEmployees();
     console.table(employees);
   } catch(err) {
-    console.log(err); // TypeError: failed to fetch
+    console.log(err); 
   }
 
 
  employeeChoices();
 
 }
-
-
+// function for viewing departments
 async function viewDepartments () {
-    // displaying all employees
-    //  const employees = await connection.getAllEmployees()  
-    //  console.table(employees) 
+     
     try {
         const departments = await connection.getAllDepartments();
         console.table(departments);
       } catch(err) {
-        console.log(err); // TypeError: failed to fetch
+        console.log(err); 
       }
     
     
      employeeChoices();
     
     }
-
-
+// function for viewing roles
     async function viewRoles () {
-        // displaying all employees
-        //  const employees = await connection.getAllEmployees()  
-        //  console.table(employees) 
+         
         try {
             const roles = await connection.getAllRoles();
             console.table(roles);
           } catch(err) {
-            console.log(err); // TypeError: failed to fetch
+            console.log(err); 
           }
         
         
          employeeChoices();
         
         }
-
+// function for adding department
     async function addDepartment () {
             
         try {
@@ -118,7 +110,7 @@ async function viewDepartments () {
         employeeChoices(); 
                 
         }
-                
+// function for adding role               
         async function addRole () {
             
             try {
@@ -149,7 +141,7 @@ async function viewDepartments () {
             employeeChoices(); 
                     
             }      
-
+// function for adding employee
             async function addEmployee () {
             
                 try {
