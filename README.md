@@ -1,4 +1,4 @@
-Welcome to my employee tracker! With this application the user can make view table of data including department, roles, and employees. The user can also add departments, roles, and employees! Manage your staff and departments here!
+Welcome to my employee tracker! With this application the user can view tables of data including department, roles, and employees. The user can also add departments, roles, and employees! Manage your staff and departments here!
 
 Technologies used include
 * MySQL
